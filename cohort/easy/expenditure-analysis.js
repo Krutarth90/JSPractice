@@ -15,16 +15,21 @@
 
 function calculateTotalSpentByCategory(a) 
 {
-    let ans=[];
+    let ans={};
     for(let i=0;i<a.length;i++)
     {
-        const {cat , spent}=a[i];
-        if(ans[cat])
-            ans[cat]+=spent;
+        const {category , price}=a[i];
+        if(!ans[category])
+            ans[category]=price;
         else
-            ans[cat]=spent;
+            ans[category]+=price;
     }
-    return ans;
+    let ra=[];
+    for(let i in ans)
+    {
+        ra.push({category: i , totalSpent: ans[i]});
+    }
+    return ra;
 }
 
 module.exports = calculateTotalSpentByCategory;

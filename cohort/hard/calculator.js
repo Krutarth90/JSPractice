@@ -16,6 +16,95 @@
   Once you've implemented the logic, test your code by running
 */
 
-class Calculator {}
+class Calculator 
+{
+    constructor(x)
+    {
+        this.result =x;
+    }
+    add(x)
+    {
+        this.result+=x;
+    }
+    subtract(x)
+    {
+        this.result-=x;
+    }
+    multiply(x)
+    {
+        this.result*=x;
+    }
+    divide(x)
+    {
+        this.result/=x;
+    }
+    clear()
+    {
+        this.result=0;
+    }
+    getResult()
+    {
+        return this.result;
+    }
+}
+
+function calculate(s)
+{
+    let space=true;
+    let op='+';
+    let ans= new Calculator(0);
+    for(let i=0;i<s.length;i++)
+    {
+        let value;
+        if(s[i]<'0' || s[i]>'9' && s[i]!=' ' && s[i]!='(' && s[i]!=')')
+        {
+            throw(Error);
+            return;
+        }
+        if(s[i]=='(')
+        {
+            let str="";
+            let j=i+1;
+            for( ;j<s.length;j++)
+            {
+                if(s[j]==')')
+                {
+                    value = calculate(str);
+                    break;
+                }
+                str.push(s[j]);
+            }
+            i=j;
+        }
+        else if(s[i]==' ' )
+            space =true;
+        else
+        {
+            value=s[i]-'0';
+            let j=i+1;
+            while(j<s.length && s[j]>='0' && s[j]<='9')
+            {
+                
+            }
+        }
+        switch(op)
+        {
+            case '+':
+                ans.add(value);
+                break;
+            
+            case "-":
+                ans.subtract(value);
+                break;
+            
+            case '*':
+                ans.multiply(value);
+                break;
+            case '/':
+                ans.divide(value);
+                break;
+        }
+    }
+}
 
 module.exports = Calculator;
