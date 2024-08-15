@@ -22,14 +22,14 @@ class Todo
     }
     remove(i)
     {
-        if(i<0 || i>this.todo.length)
-            throw new Error;
+        if(i<0 || i>=this.todo.length)
+            return;
         this.todo.splice(i,1);
     }
     update(i, x)
     {
-        if(i<0 || i>this.todo.length)
-            throw new Error;
+        if(i<0 || i>=this.todo.length)
+            return;
         this.todo[i]=x;
     }
     getAll()
@@ -39,7 +39,7 @@ class Todo
     get(i)
     {
         if(i<0 || i>=this.todo.length)
-            throw new Error;
+            return null;
         return this.todo[i];
     }
     clear()
