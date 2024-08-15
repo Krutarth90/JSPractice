@@ -18,9 +18,9 @@
 
 class Calculator 
 {
-    constructor(x)
+    constructor()
     {
-        this.result =x;
+        this.result =0;
     }
     add(x)
     {
@@ -36,6 +36,8 @@ class Calculator
     }
     divide(x)
     {
+        if(x==0)
+            throw new Error;
         this.result/=x;
     }
     clear()
@@ -46,20 +48,29 @@ class Calculator
     {
         return this.result;
     }
+    calculate(s)
+    {
+        s=s.replace(/\s+/g,'');
+        for(let i=0;i<s.length;i++)
+        {
+            if(s[i]!='(' && s[i]!=')' && (s[i]<'0' || s[i]>'9') && s[i]!='+' && s[i]!='-' && s[i]!='/' && s[i]!='*' && s[i]!='.')
+            {
+                throw new Error;
+            }
+        }
+        try 
+        {
+            this.result = eval(s);
+            if(this.result==Infinity || this.result==-Infinity)
+                throw new Error;
+        } 
+        catch (error) 
+        {
+            throw new Error;
+        }
+        return this.result;
+    }
 }
 
-function calculate(s)
-{
-    let a=s.replace(/\s+/g,'');
-    for(let i=0;i<s.length;i++)
-    {
-        if(s[i]!='(' && s[i]!=')' && s[i]<'0' || s[i]>'9' && s[i]!='+' && s[i]!='-' && s[i]!='/' && s[i]!='*')
-        {
-            throw Error;
-            return;
-        }
-    }
-    'return ${a}';
-}
 
 module.exports = Calculator;
