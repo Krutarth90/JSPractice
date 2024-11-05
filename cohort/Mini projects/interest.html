@@ -1,0 +1,41 @@
+<html>
+<script>
+    async function calc()
+    {
+        const amount = document.getElementById("amount").value;
+        const rate = document.getElementById("rate").value;
+        const time = document.getElementById("time").value;
+        const ans = await fetch("https://automatic-computing-machine-56gpprr467phpgr-3000.app.github.dev/calculate?principal=" + amount + "&rate=" + rate + "&time=" + time
+        );
+        const fa = await ans.json();
+        const total = document.getElementById("total");
+        total.innerHTML = fa.totalAmount;
+        console.log("Amount:", amount, "Rate:", rate, "Time:", time);
+
+    }
+</script>
+
+<body>
+<div>
+    <h5>
+        AMOUNT
+    </h5>
+    <input oninput = "calc()" id = "amount" type = "text" placeholder="Enter amount">
+</div>
+<div>
+    <h5>
+        RATE OF INTEREST
+    </h5>
+    <input oninput = "calc()" id = "rate" type="text" placeholder="Enter interest rate">
+</div>
+<div>
+    <h5>
+        TIME
+    </h5>
+    <input oninput = "calc()" id = "time" type="text" placeholder="Enter Duration">
+</div>
+<H1 id = "total">
+
+</H1>
+</body>
+</html>

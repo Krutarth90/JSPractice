@@ -1,10 +1,12 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
-const cors = require('cors');
-app.use(cors());
+//const cors = require('cors');
+//app.use(cors());
 // Route to calculate total amount based on compound interest
 app.get('/calculate', (req, res) => {
+    
+    console.log("CAME");
     const principal = parseFloat(req.query.principal);
     const rate = parseFloat(req.query.rate);
     const time = parseFloat(req.query.time);
